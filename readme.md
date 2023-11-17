@@ -1,6 +1,6 @@
 ## Metadata stripper
 
-*  Allowed extensions: JPG, PNG, JPEG, GIF, WEBP
+*  Allowed extensions: JPG, PNG, JPEG, WEBP
 
 
 <!-- <p align="center">
