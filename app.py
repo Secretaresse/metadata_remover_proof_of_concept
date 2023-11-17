@@ -2,7 +2,7 @@ from flask import Flask
 import os
 import secrets
 
-allowed_extensions = {"png", "jpg", "jpeg"}
+allowed_extensions = {"png", "jpg", "jpeg", "webp"}
 upload_folder = 'uploads'
 download_folder = 'downloads'
 
