@@ -29,7 +29,7 @@ def upload_image():
             file.save(file_path)
             return redirect(url_for("view.view_metadata", name=filename))
         else:
-            return jsonify({"error": "Invalid file format. Allowed formats are: png, jpg, jpeg, gif"})
+            return jsonify({"error": "Invalid file format. Allowed formats are: png, jpg, jpeg, wpeg"})
     else:
         return jsonify({"error": "Invalid request method"})
 
