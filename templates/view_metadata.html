@@ -26,40 +26,5 @@
     <form action="/nextimage" method="post" enctype="multipart/form-data">
         <button id="nextimage" type="submit">New Image</button>
     </form>
-
-    <!-- <script>
-        function remove_metadata() {
-            // Get the filename parameter from the URL
-            var urlParams = new URLSearchParams(window.location.search);
-            var filename = urlParams.get("filename");
-
-            // Create FormData and append filename
-            var formData = new FormData();
-            formData.append('filename', filename);
-
-            fetch("/remove", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert("Metadata removed successfully!");
-                    redirectToViewStrippedMetadata(data.filename);
-                } 
-                else {
-                    alert("Error: " + data.error);
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
-        }
-
-        function redirectToViewStrippedMetadata(filename) {
-            window.location.href = "/result?filename=" + encodeURIComponent(filename);
-        }
-        
-    </script> -->
 </body>
 </html>
