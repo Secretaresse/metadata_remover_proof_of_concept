@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"> -->
+    <title>Photo Uploader</title>
+</head>
+<body>
+    <h1>Remaining Metadata</h1>
+    <table>
+        {%if metadata%}
+        {% for label, value in metadata.items() %}
+            <tr>
+                <td>{{ label }}</td>
+                <td>{{ value }}</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <h1>Download Stripped File!</h1>
+    <form action="/download" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="name" value="{{ request.args.get('name') }}">
+        <button id="downloadbutton" type="submit">Download</button>
+    </form>
+    <form action="/nextimage" method="post" enctype="multipart/form-data">
+        <button id="nextimage" type="submit">Next Image</button>
+    </form>
+</body>
+</html>

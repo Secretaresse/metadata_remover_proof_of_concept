@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"> -->
+    <title>Photo Uploader</title>
+</head>
+<body>
+    <h1>Original Metadata</h1>
+    <table>
+        {%if metadata%}
+        {% for label, value in metadata.items() %}
+            <tr>
+                <td>{{ label }}</td>
+                <td>{{ value }}</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <h1>Remove the metadata</h1>
+    <form action="/remove" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="name" value="{{ request.args.get('name') }}">
+        <button id="removebutton" type="submit">Remove</button>
+    </form>
+    <form action="/nextimage" method="post" enctype="multipart/form-data">
+        <button id="nextimage" type="submit">New Image</button>
+    </form>
+
+    <!-- <script>
+        function remove_metadata() {
+            // Get the filename parameter from the URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var filename = urlParams.get("filename");
+
+            // Create FormData and append filename
+            var formData = new FormData();
+            formData.append('filename', filename);
+
+            fetch("/remove", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Metadata removed successfully!");
+                    redirectToViewStrippedMetadata(data.filename);
+                } 
+                else {
+                    alert("Error: " + data.error);
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+
+        function redirectToViewStrippedMetadata(filename) {
+            window.location.href = "/result?filename=" + encodeURIComponent(filename);
+        }
+        
+    </script> -->
+</body>
+</html>

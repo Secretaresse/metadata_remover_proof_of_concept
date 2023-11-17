@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"> -->
+    <title>Photo Uploader</title>
+</head>
+<body>
+    <h1>Photo Uploader</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file" accept=".png, .jpg, .jpeg, .gif, .webp">
+        <button id="uploadbutton" type="submit">Upload</button>
+    </form>
+    <!-- <script>
+        function uploadPhoto() {
+            var fileInput = document.getElementById("fileInput");
+            var file = fileInput.files[0];
+
+            var formData = new FormData();
+            formData.append("file", file);
+
+            fetch("/upload_image", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("File uploaded successfully! Filename: " + data.filename);
+                    redirectToViewMetadata(data.filename);
+                } 
+                else {
+                    alert("Error: " + data.error);
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+            return filename
+        }
+        function redirectToViewMetadata(filename) {
+            window.location.href = "/view?filename=" + encodeURIComponent(filename);
+        }
+    </script> -->
+</body>
+</html>
