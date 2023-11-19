@@ -1,3 +1,8 @@
+This Project is owned by: Jelle Groot
+Student Cyber Security
+University of Applied Sciences
+Project Security year 2
+
 ## Metadata stripper
 
 *  Allowed extensions: JPG, PNG, JPEG, WEBP

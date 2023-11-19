@@ -1,3 +1,9 @@
+# This file is owned by: Jelle Groot
+# Student Cyber Security
+# University of Applied Sciences
+# Project Security year 2
+
+
 from flask import request, jsonify, Blueprint, render_template, redirect, url_for, send_from_directory
 import os
 from PIL import Image

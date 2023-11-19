@@ -1,3 +1,9 @@
+# This file is owned by: Jelle Groot
+# Student Cyber Security
+# University of Applied Sciences
+# Project Security year 2
+
+
 from flask import Flask
 import os
 import secrets

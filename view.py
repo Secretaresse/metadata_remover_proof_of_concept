@@ -1,3 +1,8 @@
+# This file is owned by: Jelle Groot
+# Student Cyber Security
+# University of Applied Sciences
+# Project Security year 2
+
 from flask import render_template, request, Blueprint
 from PIL import Image
 from PIL.ExifTags import TAGS
