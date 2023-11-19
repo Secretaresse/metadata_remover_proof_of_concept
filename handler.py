@@ -68,13 +68,24 @@ def remove_metadata():
         
     return jsonify({"error": "Wrong request method"}), 405   
 
-    
 
 @bp.route("/download", methods=["POST"])
 def download():
     app = create_app()
     filename = request.form.get("name")
-    return send_from_directory(app.config['DOWNLOAD_FOLDER'], filename, as_attachment=True)
+    upload_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    download_file_path = os.path.join(app.config['DOWNLOAD_FOLDER'], filename)
+    
+    response = send_from_directory(app.config['DOWNLOAD_FOLDER'], filename, as_attachment=True)
+
+    if os.path.exists(upload_file_path) and os.path.exists(download_file_path):
+        os.remove(upload_file_path)
+        os.remove(download_file_path)
+    
+    return response
+
+
+
 
 @bp.route("/nextimage", methods=["POST"])
 def nextimage():
