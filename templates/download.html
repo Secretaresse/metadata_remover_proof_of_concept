@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Remaining Metadata</h1>
+    <!-- Here will the metadata be shown -->
     <table>
         {%if metadata%}
         {% for label, value in metadata.items() %}
@@ -19,10 +20,12 @@
         {% endif %}
     </table>
     <h1>Download Stripped File!</h1>
+    <!-- Link to the download script -->
     <form action="/download" method="post" enctype="multipart/form-data">
         <input type="hidden" name="name" value="{{ request.args.get('name') }}">
         <button id="downloadbutton" type="submit">Download</button>
     </form>
+    <!-- Link to the script that redirects to the upload page -->
     <form action="/nextimage" method="post" enctype="multipart/form-data">
         <button id="nextimage" type="submit">Next Image</button>
     </form>

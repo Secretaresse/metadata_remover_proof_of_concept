@@ -11,18 +11,19 @@ bp = Blueprint('view', __name__)
 def home():
     return render_template("home.html")
 
+# Function to show the metadata
 @bp.route("/view", methods= ["GET", "POST"])
 def view_metadata():
     app = create_app()
     filename = request.args.get("name")
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-    # Open the image using PIL
+    # Open the image
     try:
         image = Image.open(file_path)
     except FileNotFoundError:
         return "Image not found", 404
 
-    # Extract other basic metadata
+    # Extract the basic metadata
     info_dict = {
         "Filename": filename,
         "Image Size": image.size,
@@ -37,33 +38,35 @@ def view_metadata():
     for label, value in info_dict.items():
         print(f"{label:25}: {value}")
 
-    # Extract EXIF data
+    # Extract the EXIF metadata
     exifdata = image.getexif()
 
-    # Iterating over all EXIF data fields
+    # Put all the fields in info_dict
     for tag_id in exifdata:
-        # Get the tag name, instead of the human-unreadable tag id
+        # Get the tag name
         tag = TAGS.get(tag_id, tag_id)
         data = exifdata.get(tag_id)
-        # Decode bytes
+        # Decode the EXIF data from the tag_id
         if isinstance(data, bytes):
             data = data.decode()
         info_dict[tag] = data
     return render_template("view_metadata.html", metadata=info_dict)
 
+
+# Function to show the remaining metadata after stripping
 @bp.route("/result")
 def view_stripped_metadata():
     app = create_app()
     filename = request.args.get("name")
     file = os.path.join(app.config['DOWNLOAD_FOLDER'], filename)
 
-    # Open the image using PIL
+    # Open the image 
     try:
         image = Image.open(file)
     except FileNotFoundError:
         return "Image not found", 404
 
-    # Extract other basic metadata
+    # Extract the basic metadata
     info_dict = {
         "Filename": filename,
         "Image Size": image.size,
@@ -78,19 +81,18 @@ def view_stripped_metadata():
     for label, value in info_dict.items():
         print(f"{label:25}: {value}")
 
-    # Extract EXIF data
+    # Extract EXIF metadata
     exifdata = image.getexif()
 
-    # Iterating over all EXIF data fields
+    # Put all the fields in info_dict
     for tag_id in exifdata:
-        # Get the tag name, instead of the human-unreadable tag id
+        # Get the tag name
         tag = TAGS.get(tag_id, tag_id)
         data = exifdata.get(tag_id)
-        # Decode bytes
+        # Decode the EXIF data from the tag_id
         if isinstance(data, bytes):
             data = data.decode()
         info_dict[tag] = data
-    # g.filename = filename
     return render_template("download.html", metadata=info_dict)
 
 

@@ -6,7 +6,7 @@ allowed_extensions = {"png", "jpg", "jpeg", "webp"}
 upload_folder = 'uploads'
 download_folder = 'downloads'
 
-#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 
 def create_app():
@@ -14,12 +14,13 @@ def create_app():
     import view, handler 
     app.secret_key = secrets.token_urlsafe(32)
 
-
+    # Define locations of upload folder and download folder
     app.config['UPLOAD_FOLDER'] = os.path.join(app.instance_path, upload_folder)
     app.config['DOWNLOAD_FOLDER'] = os.path.join(app.instance_path, download_folder)
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     os.makedirs(app.config['DOWNLOAD_FOLDER'], exist_ok=True)
 
+    # Register the blueprints
     app.register_blueprint(view.bp)
     app.register_blueprint(handler.bp)
 
